@@ -11,5 +11,5 @@ An android application to view the list of movies and manage yor favourites
 ### Language
 - Kotlin
 
-# Reuirements
+# Requirements
 - Minimum of Android API Level 19 (KitKat)
