@@ -3,4 +3,6 @@
     <string name="movie">Movie</string>
     <string name="hut">Hut</string>
     <string name="image">image</string>
+    <string name="favourites">Favourites</string>
+    <string name="popular_movies">Popular Movies</string>
 </resources>
