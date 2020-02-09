@@ -1,4 +1,4 @@
-package com.decagon.moviehut.views
+package com.decagon.moviehut.viewmodels
 
 import androidx.lifecycle.ViewModel
 
