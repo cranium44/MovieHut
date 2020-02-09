@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.decagon.moviehut.R
+import com.decagon.moviehut.viewmodels.DetailsViewModel
 
 class DetailsFragment : Fragment() {
 
