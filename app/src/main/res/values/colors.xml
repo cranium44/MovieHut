@@ -6,4 +6,5 @@
     <color name="font_color">#fff</color>
     <color name="bg_color">#fff</color>
     <color name="icon_color">#fff</color>
+    <color name="gradient_end">#0e0609</color>
 </resources>
