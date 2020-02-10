@@ -21,9 +21,9 @@
 
             <ImageView
                 android:id="@+id/movies_image"
-                android:contentDescription="@string/image"
                 android:layout_width="154dp"
                 android:layout_height="200dp"
+                android:contentDescription="@string/image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -31,10 +31,10 @@
 
             <ImageView
                 android:id="@+id/movie_favourite"
-                android:contentDescription="@string/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/image"
                 app:layout_constraintBottom_toBottomOf="@+id/movies_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/movies_image"
@@ -45,6 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,23 +53,24 @@
                 app:layout_constraintTop_toTopOf="@+id/movies_image" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/movies_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:drawableStart="@drawable/ic_star"
-                tools:text="5.7"
+                android:text=""
                 app:layout_constraintBottom_toBottomOf="@+id/movies_image"
-                app:layout_constraintEnd_toEndOf="@+id/imageView4" />
+                app:layout_constraintEnd_toEndOf="@+id/movie_favourite"
+                app:layout_constraintTop_toBottomOf="@+id/movie_favourite"
+                tools:text="5.7" />
 
             <TextView
                 android:id="@+id/movies_genre"
                 android:layout_width="59dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/movies_image"
-                app:layout_constraintStart_toEndOf="@+id/movies_image" />
+                app:layout_constraintBottom_toTopOf="@+id/movies_rating"
+                app:layout_constraintStart_toEndOf="@+id/movies_image"
+                app:layout_constraintTop_toBottomOf="@+id/movies_title" />
 
             <TextView
                 android:id="@+id/movie_date"
