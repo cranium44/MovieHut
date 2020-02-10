@@ -1,6 +1,6 @@
 package com.decagon.moviehut.models
 
-data class Movie(
+class FavouriteMovie(
     val id: Long,
     val popularity: Double,
     val title: String,
@@ -9,5 +9,6 @@ data class Movie(
     val releaseDate: String,
     val posterPath: String,
     val backdropPath: String,
-    val genres: ArrayList<Genre>
+    val genres: ArrayList<Genre>,
+    var isFavorite: Boolean = false
 )
