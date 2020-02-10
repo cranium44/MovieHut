@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.decagon.moviehut.data.MovieDatabaseAPI
 import com.decagon.moviehut.data.MovieDatabaseGenreAPI
 import com.decagon.moviehut.data.genre.Genre
-import com.decagon.moviehut.data.movieresponse.Result
+import com.decagon.moviehut.data.movieresponse.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -27,13 +27,13 @@ object NetworkRepository {
         return data
     }
 
-    suspend fun getMovies(): MutableLiveData<List<Result>>{
-        var data = MutableLiveData<List<Result>>()
+    suspend fun getMovies(): MutableLiveData<List<Movie>>{
+        var data = MutableLiveData<List<Movie>>()
         withContext(Dispatchers.IO){
             try {
                 data.value = movieDatabaseAPI.getResponse("popularity.desc", URLRepository.API_KEY)
                     .await()
-                    .results
+                    .movies
             }catch (t: Throwable){
                 data.value = null
                 Log.e(TAG, t.message.toString())

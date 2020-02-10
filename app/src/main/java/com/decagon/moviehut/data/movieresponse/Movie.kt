@@ -3,7 +3,7 @@ package com.decagon.moviehut.data.movieresponse
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class Movie(
     var adult: Boolean,
     @SerializedName("backdrop_path")
     var backdropPath: String,

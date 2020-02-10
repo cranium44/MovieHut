@@ -2,13 +2,13 @@ package com.decagon.moviehut.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.decagon.moviehut.controllers.NetworkRepository
-import com.decagon.moviehut.data.movieresponse.Result
+import com.decagon.moviehut.data.movieresponse.Movie
 
 class DetailsViewModel : ViewModel() {
-    lateinit var result: Result
+    lateinit var movie: Movie
     private val repository = NetworkRepository
 
-//    fun getMovies(): List<Result>{
+//    fun getMovies(): List<Movie>{
 //
 //    }
 }
