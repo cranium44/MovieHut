@@ -12,8 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.decagon.moviehut.R
 import com.decagon.moviehut.controllers.MoviesAdapter
+import com.decagon.moviehut.controllers.NetworkRepository
+import com.decagon.moviehut.controllers.URLRepository
+import com.decagon.moviehut.data.MovieDatabaseGenreAPI
 import com.decagon.moviehut.viewmodels.HomeViewModel
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +39,8 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
         return view
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
