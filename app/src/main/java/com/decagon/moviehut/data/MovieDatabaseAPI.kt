@@ -21,7 +21,7 @@ interface MovieDatabaseAPI {
         operator fun invoke(): MovieDatabaseAPI{
             val okHttpClient = OkHttpClient.Builder().build()
             return Retrofit.Builder()
-                .baseUrl(URLRepository.GENRE_BASE_URL)
+                .baseUrl(URLRepository.API_BASE_URL)
                 .client(okHttpClient)
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
