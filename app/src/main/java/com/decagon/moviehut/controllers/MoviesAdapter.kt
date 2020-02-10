@@ -13,21 +13,26 @@ import com.decagon.moviehut.data.movieresponse.Movie
 import java.net.URL
 import javax.xml.transform.Templates
 
-class MoviesAdapter(val context: Context): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClickedListener): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     var movies: List<Movie> = listOf()
 
-    class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class MoviesViewHolder(view: View, onItemClickedListener: OnItemClickedListener) : RecyclerView.ViewHolder(view){
         val title = view.findViewById<TextView>(R.id.movies_title)
         val releaseDate = view.findViewById<TextView>(R.id.movie_date)
         val rating = view.findViewById<TextView>(R.id.movies_rating)
         val image = view.findViewById<ImageView>(R.id.movies_image)
         val favorites = view.findViewById<ImageView>(R.id.movie_favourite)
+        init{
+            view.setOnClickListener {
+                onItemClickedListener.onMovieClicked(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_row, parent, false)
-        return MoviesViewHolder(view)
+        return MoviesViewHolder(view, onItemClickedListener)
     }
 
     override fun getItemCount(): Int {
@@ -43,5 +48,9 @@ class MoviesAdapter(val context: Context): RecyclerView.Adapter<MoviesAdapter.Mo
         Glide.with(context)
             .load(URLRepository.IMAGE_BASE_URL+"w154" + movie.posterPath)
             .into(holder.image)
+    }
+
+    interface OnItemClickedListener{
+        fun onMovieClicked(position: Int)
     }
 }
