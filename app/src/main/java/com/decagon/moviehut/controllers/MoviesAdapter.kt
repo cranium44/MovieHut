@@ -20,8 +20,8 @@ class MoviesAdapter(val context: Context): RecyclerView.Adapter<MoviesAdapter.Mo
     class MoviesViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val title = view.findViewById<TextView>(R.id.movies_title)
         val releaseDate = view.findViewById<TextView>(R.id.movie_date)
-        val rating = view.findViewById<TextView>(R.id.rating)
-        val image = view.findViewById<ImageView>(R.id.movie_poster)
+        val rating = view.findViewById<TextView>(R.id.movies_rating)
+        val image = view.findViewById<ImageView>(R.id.movies_image)
         val favorites = view.findViewById<ImageView>(R.id.movie_favourite)
     }
 

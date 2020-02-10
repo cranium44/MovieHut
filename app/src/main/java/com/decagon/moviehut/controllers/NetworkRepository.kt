@@ -27,15 +27,15 @@ object NetworkRepository {
         return data
     }
 
-    suspend fun getMovies(): MutableLiveData<List<Movie>>{
-        var data = MutableLiveData<List<Movie>>()
+    suspend fun getMovies(): List<Movie>?{
+        var data: List<Movie>? = null
         withContext(Dispatchers.IO){
             try {
-                data.value = movieDatabaseAPI.getResponse("popularity.desc", URLRepository.API_KEY)
+                data = movieDatabaseAPI.getResponse("popularity.desc", URLRepository.API_KEY)
                     .await()
                     .movies
             }catch (t: Throwable){
-                data.value = null
+
                 Log.e(TAG, t.message.toString())
             }
         }

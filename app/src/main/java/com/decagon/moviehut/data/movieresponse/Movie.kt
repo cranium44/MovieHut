@@ -23,7 +23,7 @@ data class Movie(
     var title: String,
     var video: Boolean,
     @SerializedName("vote_average")
-    var voteAverage: Int,
+    var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
 )

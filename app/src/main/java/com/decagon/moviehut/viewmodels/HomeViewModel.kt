@@ -1,5 +1,6 @@
 package com.decagon.moviehut.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,27 +14,18 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    val repository = NetworkRepository
-    val viewModelJob = Job()
-    val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val repository = NetworkRepository
+    private val viewModelJob = Job()
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    private var adapter = MoviesAdapter()
 
     private var _allMovies = MutableLiveData<List<Movie>>()
-        val allMovies : LiveData<List<Movie>>
+        val allMovies
         get() = _allMovies
 
     init {
         viewModelScope.launch {
-            _allMovies = repository.getMovies()
+            _allMovies.value = repository.getMovies()
         }
     }
-
-    fun getAdpter(): MoviesAdapter{
-        return adapter
-    }
-
-
-
-
 }
