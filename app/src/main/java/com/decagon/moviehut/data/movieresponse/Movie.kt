@@ -2,6 +2,7 @@ package com.decagon.moviehut.data.movieresponse
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Movie(
     var adult: Boolean,
@@ -26,4 +27,4 @@ data class Movie(
     var voteAverage: Double,
     @SerializedName("vote_count")
     var voteCount: Int
-)
+): Serializable

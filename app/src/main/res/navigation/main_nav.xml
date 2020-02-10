@@ -12,11 +12,16 @@
         tools:layout="@layout/home_fragment" >
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/details" />
+            app:destination="@id/details"
+            app:enterAnim="@anim/fragment_close_exit"/>
     </fragment>
     <fragment
         android:id="@+id/details"
         android:name="com.decagon.moviehut.views.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.decagon.moviehut.data.movieresponse.Movie" />
+    </fragment>
 </navigation>

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.decagon.moviehut.R
@@ -50,7 +52,8 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
     }
 
     override fun onMovieClicked(position: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(viewModel.allMovies.value!![position])
+        findNavController().navigate(action)
     }
 
 }
