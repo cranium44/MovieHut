@@ -1,5 +1,7 @@
 package com.decagon.moviehut.data.database
 
+import com.decagon.moviehut.data.genre.Genre
+
 class FavouriteMovie(
     val id: Long,
     val popularity: Double,
