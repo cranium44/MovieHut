@@ -23,6 +23,7 @@ class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClick
         val rating = view.findViewById<TextView>(R.id.movies_rating)
         val image = view.findViewById<ImageView>(R.id.movies_image)
         val favorites = view.findViewById<ImageView>(R.id.movie_favourite)
+
         init{
             view.setOnClickListener {
                 onItemClickedListener.onMovieClicked(adapterPosition)
@@ -48,6 +49,10 @@ class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClick
         Glide.with(context)
             .load(URLRepository.IMAGE_BASE_URL+"w154" + movie.posterPath)
             .into(holder.image)
+
+        if (movie.isFavourite){
+            holder.favorites.setImageResource(R.drawable.ic_favorite_filled)
+        }
     }
 
     interface OnItemClickedListener{

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,9 @@ class DetailsFragment : Fragment() {
         Glide.with(context!!)
             .load(URLRepository.IMAGE_BASE_URL + "original" + movie.backdropPath)
             .into(view.findViewById(R.id.movie_poster))
+        if(movie.isFavourite){
+            view.findViewById<ImageView>(R.id.detaials_favourite).setImageResource(R.drawable.ic_favorite_filled)
+        }
 
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
