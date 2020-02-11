@@ -6,4 +6,6 @@
     <string name="favourites">Favourites</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="placeholdertext">TextView</string>
+    <string name="add_to_favourites">Add To Favourites</string>
+    <string name="release_date">Release Date:</string>
 </resources>

@@ -4,40 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    android:orientation="vertical"
-    android:padding="@dimen/padding_regular">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/padding_small"
         app:cardCornerRadius="@dimen/padding_small"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_small">
 
 
             <ImageView
                 android:id="@+id/movies_image"
-                android:contentDescription="@string/image"
                 android:layout_width="154dp"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
+                android:contentDescription="@string/image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:contentDescription="@string/image"
+                android:id="@+id/movie_favourite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/movies_image"
+                android:contentDescription="@string/image"
+                app:layout_constraintBottom_toBottomOf="@+id/movies_rating"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/movies_image"
+                app:layout_constraintTop_toTopOf="@+id/movies_rating"
                 app:srcCompat="@drawable/ic_favorite_outline" />
 
             <TextView
@@ -45,6 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,19 +57,20 @@
                 android:id="@+id/movies_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:layout_marginStart="8dp"
                 android:drawableStart="@drawable/ic_star"
-                tools:text="5.7"
+                android:text=""
                 app:layout_constraintBottom_toBottomOf="@+id/movies_image"
-                app:layout_constraintEnd_toEndOf="@+id/imageView4" />
+                app:layout_constraintStart_toEndOf="@+id/movies_image"
+                tools:text="5.7" />
 
             <TextView
                 android:id="@+id/movies_genre"
                 android:layout_width="59dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/movies_image"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/movies_rating"
                 app:layout_constraintStart_toEndOf="@+id/movies_image" />
 
             <TextView
@@ -75,8 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
+                android:text=""
                 app:layout_constraintBottom_toTopOf="@+id/movies_genre"
+                app:layout_constraintEnd_toStartOf="@+id/movie_favourite"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/movies_image"
                 app:layout_constraintTop_toBottomOf="@+id/movies_title" />
         </androidx.constraintlayout.widget.ConstraintLayout>
