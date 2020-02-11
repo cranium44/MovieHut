@@ -22,6 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,14 +42,15 @@
             tools:text="Iron Man" />
 
         <TextView
-            android:id="@+id/details_popularity"
+            android:id="@+id/details_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:text="@string/release_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/details_title"
-            tools:text="Popularity" />
+            />
 
         <TextView
             android:id="@+id/rating"
@@ -57,10 +59,10 @@
             android:layout_marginEnd="16dp"
             android:drawableLeft="@drawable/ic_star"
             android:text=""
-            app:layout_constraintBaseline_toBaselineOf="@+id/details_popularity"
+            app:layout_constraintBaseline_toBaselineOf="@+id/details_release_date"
             app:layout_constraintEnd_toStartOf="@+id/detaials_favourite"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/details_popularity"
+            app:layout_constraintStart_toEndOf="@+id/details_release_date"
             tools:text="5.0" />
 
         <ScrollView
@@ -70,8 +72,8 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="@+id/detaials_favourite"
-            app:layout_constraintStart_toStartOf="@+id/details_popularity"
-            app:layout_constraintTop_toBottomOf="@+id/details_popularity">
+            app:layout_constraintStart_toStartOf="@+id/details_release_date"
+            app:layout_constraintTop_toBottomOf="@+id/details_release_date">
 
             <LinearLayout
                 android:layout_width="match_parent"
