@@ -19,4 +19,16 @@ object DatabaseRepository {
         }
         return data
     }
+
+    suspend fun saveFavouriteMovie(favouriteMovie: FavouriteMovie){
+        withContext(Dispatchers.IO){
+            database.movieDao().addFavouriteMovie(favouriteMovie)
+        }
+    }
+
+    suspend fun deleteFavouriteMovie(favouriteMovie: FavouriteMovie){
+        withContext(Dispatchers.IO){
+            database.movieDao().deleteFavouriteMovie(favouriteMovie)
+        }
+    }
 }
