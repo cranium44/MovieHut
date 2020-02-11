@@ -20,7 +20,6 @@ data class FavouriteMovie(
     val posterPath: String,
     @ColumnInfo(name = "backdrop_path")
     val backdropPath: String,
-    val genre: Genre,
     @ColumnInfo(name = "is_favourite")
     var isFavorite: Boolean = false
 )

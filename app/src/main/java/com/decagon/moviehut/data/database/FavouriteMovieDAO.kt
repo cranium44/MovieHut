@@ -1,10 +1,7 @@
 package com.decagon.moviehut.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface FavouriteMovieDAO {
@@ -12,7 +9,7 @@ interface FavouriteMovieDAO {
     @Query("SELECT * FROM favourite_movies")
     fun getAllFavourites(): LiveData<List<FavouriteMovie>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addFavouriteMovie(favouriteMovie: FavouriteMovie)
 
     @Delete
