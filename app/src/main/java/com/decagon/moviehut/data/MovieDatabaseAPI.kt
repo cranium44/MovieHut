@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface MovieDatabaseAPI {
     @GET("movie")
-    fun getResponse(
+    fun getResponseAsync(
         @Query("sort_by") sortBy: String,
         @Query("api_key") apiKey: String
     ): Deferred<MovieResponse>
