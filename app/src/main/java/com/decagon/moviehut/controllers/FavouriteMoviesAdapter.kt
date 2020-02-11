@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class FavouriteMoviesAdapter(var context: Context, var onItemClickedListener: Mo
         val rating = view.findViewById<TextView>(R.id.movies_rating)
         val image = view.findViewById<ImageView>(R.id.movies_image)
         val favorites = view.findViewById<ImageView>(R.id.movie_favourite)
+        val savebutton = view.findViewById<Button>()
         init{
             view.setOnClickListener {
                 onItemClickedListener.onMovieClicked(adapterPosition)

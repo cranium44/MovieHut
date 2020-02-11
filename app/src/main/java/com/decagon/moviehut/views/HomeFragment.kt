@@ -44,20 +44,23 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        if (!favouriteSwitch.isActivated){
-            viewModel.allMovies.observe(this, Observer<List<Movie>>{movies ->
+        favouriteSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked){
+                viewModel.allMovies.observe(this, Observer<List<Movie>>{movies ->
 
-                adapter.movies = movies
-                adapter.notifyDataSetChanged()
-            })
-            recyclerView.adapter = adapter
-        }else{
-            viewModel.favouriteMovies.observe(this, Observer<List<FavouriteMovie>>{movies ->
-                adapter2.movies = movies
-                adapter.notifyDataSetChanged()
-            })
-            recyclerView.adapter = adapter2
+                    adapter.movies = movies
+                    adapter.notifyDataSetChanged()
+                })
+                recyclerView.adapter = adapter
+            }else{
+                viewModel.favouriteMovies.observe(this, Observer<List<FavouriteMovie>>{movies ->
+                    adapter2.movies = movies
+                    adapter.notifyDataSetChanged()
+                })
+                recyclerView.adapter = adapter2
+            }
         }
+
 
 
 
