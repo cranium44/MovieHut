@@ -1,8 +1,11 @@
 package com.decagon.moviehut.viewmodels
 
 import android.app.Application
+import android.content.Context
+import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import com.decagon.moviehut.controllers.DatabaseRepository
+import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.data.database.FavouriteMovie
 import com.decagon.moviehut.data.database.MovieDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +17,7 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
     //private val repository = NetworkRepository
     private val database = MovieDatabase.getInstance(application.applicationContext)
     private val dbRepository = DatabaseRepository
+    private val utils = Utils
     private val viewModelJob = Job()
     private var viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -32,5 +36,13 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             dbRepository.deleteFavouriteMovie(favouriteMovie, database)
         }
+    }
+
+    fun saveimage(context: Context, bitmap: Bitmap, imageName: String): String{
+        var filePath = ""
+        viewModelScope.launch {
+            filePath = utils.saveImage(context, bitmap, imageName)
+        }
+        return filePath
     }
 }

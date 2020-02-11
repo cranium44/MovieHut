@@ -44,6 +44,14 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        viewModel.allMovies.observe(this, Observer<List<Movie>>{movies ->
+
+            adapter.movies = movies
+            adapter.notifyDataSetChanged()
+        })
+        recyclerView.adapter = adapter
+
+        //
         favouriteSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked){
                 viewModel.allMovies.observe(this, Observer<List<Movie>>{movies ->
