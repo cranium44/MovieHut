@@ -11,7 +11,6 @@ import com.decagon.moviehut.R
 import com.decagon.moviehut.controllers.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.DetailsViewModel
-import kotlinx.android.synthetic.main.details_fragment.*
 
 class DetailsFragment : Fragment() {
 
@@ -31,7 +30,7 @@ class DetailsFragment : Fragment() {
         view.findViewById<TextView>(R.id.details_title).text = movie.title
         view.findViewById<TextView>(R.id.details_overview).text = movie.overview
         view.findViewById<TextView>(R.id.rating).text = movie.voteAverage.toString()
-        view.findViewById<TextView>(R.id.details_popularity).text = movie.popularity.toString()
+        view.findViewById<TextView>(R.id.details_release_date).append(" ${movie.releaseDate}")
         Glide.with(context!!)
             .load(URLRepository.IMAGE_BASE_URL + "original" + movie.backdropPath)
             .into(view.findViewById(R.id.movie_poster))
