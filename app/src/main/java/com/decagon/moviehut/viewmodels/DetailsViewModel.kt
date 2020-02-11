@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.decagon.moviehut.controllers.DatabaseRepository
 import com.decagon.moviehut.data.database.FavouriteMovie
+import com.decagon.moviehut.data.database.MovieDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class DetailsViewModel(application: Application) : AndroidViewModel(application) {
     //private val repository = NetworkRepository
+    private val database = MovieDatabase.getInstance(application.applicationContext)
     private val dbRepository = DatabaseRepository
     private val viewModelJob = Job()
     private var viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -22,13 +24,13 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
 
     fun saveFavourite(favouriteMovie: FavouriteMovie){
         viewModelScope.launch {
-            dbRepository.saveFavouriteMovie(favouriteMovie)
+            dbRepository.saveFavouriteMovie(favouriteMovie, database)
         }
     }
 
     fun deleteFavourite(favouriteMovie: FavouriteMovie){
         viewModelScope.launch {
-            dbRepository.deleteFavouriteMovie(favouriteMovie)
+            dbRepository.deleteFavouriteMovie(favouriteMovie, database)
         }
     }
 }

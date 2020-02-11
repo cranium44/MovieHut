@@ -10,23 +10,16 @@ import kotlinx.coroutines.withContext
 
 object DatabaseRepository {
     lateinit var context: Context
-    private val database = MovieDatabase.getInstance(context)
 
-    suspend fun getDataFromDatabase(): MutableLiveData<List<FavouriteMovie>> {
-        var data = MutableLiveData<List<FavouriteMovie>>()
-        withContext(Dispatchers.IO){
-            data = database.movieDao().getAllFavourites() as MutableLiveData<List<FavouriteMovie>>
-        }
-        return data
-    }
+    fun getDataFromDatabase(database: MovieDatabase) = database.movieDao().getAllFavourites()
 
-    suspend fun saveFavouriteMovie(favouriteMovie: FavouriteMovie){
+    suspend fun saveFavouriteMovie(favouriteMovie: FavouriteMovie, database: MovieDatabase){
         withContext(Dispatchers.IO){
             database.movieDao().addFavouriteMovie(favouriteMovie)
         }
     }
 
-    suspend fun deleteFavouriteMovie(favouriteMovie: FavouriteMovie){
+    suspend fun deleteFavouriteMovie(favouriteMovie: FavouriteMovie, database: MovieDatabase){
         withContext(Dispatchers.IO){
             database.movieDao().deleteFavouriteMovie(favouriteMovie)
         }
