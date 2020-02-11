@@ -1,7 +1,6 @@
 package com.decagon.moviehut.controllers
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.decagon.moviehut.data.MovieDatabaseAPI
 import com.decagon.moviehut.data.MovieDatabaseGenreAPI
 import com.decagon.moviehut.data.genre.Genre
@@ -31,7 +30,7 @@ object NetworkRepository {
         var data: List<Movie>? = null
         withContext(Dispatchers.IO){
             try {
-                data = movieDatabaseAPI.getResponse("popularity.desc", URLRepository.API_KEY)
+                data = movieDatabaseAPI.getResponseAsync("popularity.desc", URLRepository.API_KEY)
                     .await()
                     .movies
             }catch (t: Throwable){
