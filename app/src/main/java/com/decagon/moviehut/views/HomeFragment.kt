@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.decagon.moviehut.R
@@ -39,7 +40,7 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
         )
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         val favouriteSwitch: Switch = view.findViewById(R.id.favourites_switch)
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = GridLayoutManager(context, 2)
 
 
 
