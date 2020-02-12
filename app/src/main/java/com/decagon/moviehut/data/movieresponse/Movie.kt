@@ -1,33 +1,55 @@
 package com.decagon.moviehut.data.movieresponse
 
 
+import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
-data class Movie(
-    var adult: Boolean,
+
+@Entity(tableName = "movies")
+open class Movie(
+    open var adult: Boolean = false,
+
+    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
-    var backdropPath: String,
-    @SerializedName("genre_ids")
-    var genreIds: List<Int>,
-    var id: Int,
-    @SerializedName("original_language")
-    var originalLanguage: String,
-    @SerializedName("original_title")
-    var originalTitle: String,
-    var overview: String,
-    var popularity: Double,
-    @SerializedName("poster_path")
-    var posterPath: String,
-    @SerializedName("release_date")
-    var releaseDate: String,
-    var title: String,
-    var video: Boolean,
-    @SerializedName("vote_average")
-    var voteAverage: Double,
-    @SerializedName("vote_count")
-    var voteCount: Int,
-    @Transient
-    var isFavourite: Boolean = false
+    open var backdropPath: String = "",
 
-): Serializable
+    @PrimaryKey(autoGenerate = false)
+    open var id: Int = 0,
+
+    @ColumnInfo(name = "original_language")
+    @SerializedName("original_language")
+    open var originalLanguage: String = "",
+
+    @ColumnInfo(name = "original_title")
+    @SerializedName("original_title")
+    open var originalTitle: String = "",
+    open var overview: String = "",
+    open var popularity: Double = 0.0,
+
+    @ColumnInfo(name = "poster_path")
+    @SerializedName("poster_path")
+    open var posterPath: String = "",
+
+    @ColumnInfo(name = "release_date")
+    @SerializedName("release_date")
+    open var releaseDate: String = "",
+    open var title: String = "",
+    open var video: Boolean = false,
+
+    @ColumnInfo(name = "vote_average")
+    @SerializedName("vote_average")
+    open var voteAverage: Double = 0.0,
+
+    @ColumnInfo(name = "vote_count")
+    @SerializedName("vote_count")
+    open var voteCount: Int = 0,
+
+    @ColumnInfo(name = "is_favourite")
+    @Transient
+    open var isFavourite: Boolean = false
+)

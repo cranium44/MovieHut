@@ -1,6 +1,6 @@
 package com.decagon.moviehut.data
 
-import com.decagon.moviehut.controllers.URLRepository
+import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.MovieResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred

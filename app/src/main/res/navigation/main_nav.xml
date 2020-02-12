@@ -21,7 +21,7 @@
         android:label="details_fragment"
         tools:layout="@layout/details_fragment" >
         <argument
-            android:name="movie"
-            app:argType="com.decagon.moviehut.data.movieresponse.Movie" />
+            android:name="parcellable_movie"
+            app:argType="com.decagon.moviehut.data.database.ParcellableMovie" />
     </fragment>
 </navigation>
