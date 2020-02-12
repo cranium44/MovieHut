@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.decagon.moviehut.controllers.DatabaseRepository
 import com.decagon.moviehut.controllers.NetworkRepository
-import com.decagon.moviehut.data.database.FavouriteMovie
 import com.decagon.moviehut.data.database.MovieDatabase
 import com.decagon.moviehut.data.movieresponse.Movie
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +26,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         val allMovies
         get() = _allMovies
 
-    private lateinit var _favouriteMovies : LiveData<List<FavouriteMovie>>
+    private lateinit var _favouriteMovies : LiveData<List<Movie>>
     val favouriteMovies
         get() = _favouriteMovies
 

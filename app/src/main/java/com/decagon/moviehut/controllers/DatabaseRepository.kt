@@ -1,10 +1,8 @@
 package com.decagon.moviehut.controllers
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.decagon.moviehut.data.database.FavouriteMovie
 import com.decagon.moviehut.data.database.MovieDatabase
+import com.decagon.moviehut.data.movieresponse.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,13 +11,13 @@ object DatabaseRepository {
 
     fun getDataFromDatabase(database: MovieDatabase) = database.movieDao().getAllFavourites()
 
-    suspend fun saveFavouriteMovie(favouriteMovie: FavouriteMovie, database: MovieDatabase){
+    suspend fun saveFavouriteMovie(favouriteMovie: Movie, database: MovieDatabase){
         withContext(Dispatchers.IO){
             database.movieDao().addFavouriteMovie(favouriteMovie)
         }
     }
 
-    suspend fun deleteFavouriteMovie(favouriteMovie: FavouriteMovie, database: MovieDatabase){
+    suspend fun deleteFavouriteMovie(favouriteMovie: Movie, database: MovieDatabase){
         withContext(Dispatchers.IO){
             database.movieDao().deleteFavouriteMovie(favouriteMovie)
         }

@@ -6,8 +6,8 @@ import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import com.decagon.moviehut.controllers.DatabaseRepository
 import com.decagon.moviehut.controllers.Utils
-import com.decagon.moviehut.data.database.FavouriteMovie
 import com.decagon.moviehut.data.database.MovieDatabase
+import com.decagon.moviehut.data.movieresponse.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,13 +26,13 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
         dbRepository.context = application.applicationContext
     }
 
-    fun saveFavourite(favouriteMovie: FavouriteMovie){
+    fun saveFavourite(favouriteMovie: Movie){
         viewModelScope.launch {
             dbRepository.saveFavouriteMovie(favouriteMovie, database)
         }
     }
 
-    fun deleteFavourite(favouriteMovie: FavouriteMovie){
+    fun deleteFavourite(favouriteMovie: Movie){
         viewModelScope.launch {
             dbRepository.deleteFavouriteMovie(favouriteMovie, database)
         }

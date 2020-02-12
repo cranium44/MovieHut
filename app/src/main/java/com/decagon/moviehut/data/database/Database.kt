@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.decagon.moviehut.data.movieresponse.Movie
 
 
-@Database(entities = [FavouriteMovie::class], version = 3)
+@Database(entities = [Movie::class], version = 6)
 @TypeConverters(Converter::class)
 abstract class MovieDatabase: RoomDatabase() {
 
