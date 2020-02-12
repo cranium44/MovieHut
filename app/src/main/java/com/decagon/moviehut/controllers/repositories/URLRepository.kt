@@ -1,4 +1,4 @@
-package com.decagon.moviehut.controllers
+package com.decagon.moviehut.controllers.repositories
 
 interface URLRepository {
     companion object{

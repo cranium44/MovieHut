@@ -1,4 +1,4 @@
-package com.decagon.moviehut.controllers
+package com.decagon.moviehut.controllers.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.decagon.moviehut.R
+import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
-import java.net.URL
-import javax.xml.transform.Templates
 
 class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClickedListener): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
@@ -33,7 +32,10 @@ class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_row, parent, false)
-        return MoviesViewHolder(view, onItemClickedListener)
+        return MoviesViewHolder(
+            view,
+            onItemClickedListener
+        )
     }
 
     override fun getItemCount(): Int {
@@ -47,7 +49,7 @@ class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClick
         holder.rating.text = movie.voteAverage.toString()
         holder.releaseDate.text = movie.releaseDate
         Glide.with(context)
-            .load(URLRepository.IMAGE_BASE_URL+"w154" + movie.posterPath)
+            .load(URLRepository.IMAGE_BASE_URL +"w154" + movie.posterPath)
             .into(holder.image)
 
         if (movie.isFavourite){

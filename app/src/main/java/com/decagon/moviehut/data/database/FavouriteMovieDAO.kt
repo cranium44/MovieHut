@@ -8,7 +8,7 @@ import com.decagon.moviehut.data.movieresponse.Movie
 interface FavouriteMovieDAO {
 
     @Query("SELECT * FROM movies WHERE is_favourite = :isFavourite")
-    fun getFavouriteMovie(isFavourite: Boolean): LiveData<Movie>
+    fun getFavouriteMovie(isFavourite: Boolean): LiveData<List<Movie>>
 
     @Query("SELECT * FROM movies ORDER BY popularity DESC")
     fun getAllMovies(): LiveData<List<Movie>>
@@ -17,7 +17,7 @@ interface FavouriteMovieDAO {
     fun addFavouriteMovie(favouriteMovie: Movie)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addMovies(vararg movie: Movie)
+    fun addMovies(movie: List<Movie>)
 
     @Delete
     fun deleteFavouriteMovie(favouriteMovie: Movie)

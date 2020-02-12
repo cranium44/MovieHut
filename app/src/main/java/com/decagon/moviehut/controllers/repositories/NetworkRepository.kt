@@ -1,15 +1,18 @@
-package com.decagon.moviehut.controllers
+package com.decagon.moviehut.controllers.repositories
 
+import android.app.Application
 import android.util.Log
 import com.decagon.moviehut.data.MovieDatabaseAPI
 import com.decagon.moviehut.data.MovieDatabaseGenreAPI
+import com.decagon.moviehut.data.database.MovieDatabase
 import com.decagon.moviehut.data.genre.Genre
 import com.decagon.moviehut.data.movieresponse.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-object NetworkRepository {
+class NetworkRepository(var application: Application) {
     private val TAG = "Network Repository"
+    private val databaseRepository = DatabaseRepository(application)
     private val movieDatabaseAPI = MovieDatabaseAPI()
     private val genreAPI = MovieDatabaseGenreAPI()
 
@@ -17,7 +20,9 @@ object NetworkRepository {
         var data = ArrayList<Genre>()
         withContext(Dispatchers.IO){
             try {
-                data = genreAPI.getGenres(URLRepository.API_KEY).await().genres as ArrayList<Genre>
+                data = genreAPI.getGenres(
+                    URLRepository.API_KEY
+                ).await().genres as ArrayList<Genre>
             }catch (e: Error){
 
                 Log.e(TAG, e.message.toString())
@@ -26,11 +31,13 @@ object NetworkRepository {
         return data
     }
 
-    suspend fun getMovies(): List<Movie>?{
+    private suspend fun getMovies(): List<Movie>?{
         var data: List<Movie>? = null
         withContext(Dispatchers.IO){
             try {
-                data = movieDatabaseAPI.getResponseAsync("popularity.desc", URLRepository.API_KEY)
+                data = movieDatabaseAPI.getResponseAsync("popularity.desc",
+                    URLRepository.API_KEY
+                )
                     .await()
                     .movies
             }catch (t: Throwable){
@@ -41,5 +48,12 @@ object NetworkRepository {
         return data
     }
 
+    suspend fun callApiAndSaveToDB(database: MovieDatabase){
+        var data: List<Movie>
+        withContext(Dispatchers.IO){
+            data = getMovies()!!
+            database.movieDao().addMovies(data)
+        }
+    }
 
 }

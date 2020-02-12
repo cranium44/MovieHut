@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.decagon.moviehut.R
-import com.decagon.moviehut.controllers.MoviesAdapter
+import com.decagon.moviehut.controllers.adapters.MoviesAdapter
 import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.HomeViewModel
@@ -32,7 +32,10 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.home_fragment, container, false)
-        val adapter = MoviesAdapter(activity!!.applicationContext, this)
+        val adapter = MoviesAdapter(
+            activity!!.applicationContext,
+            this
+        )
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         val favouriteSwitch: Switch = view.findViewById(R.id.favourites_switch)
         val layoutManager = LinearLayoutManager(context)
@@ -52,7 +55,7 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
         //
         favouriteSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked){
-                viewModel.allMovies.observe(this, Observer<List<Movie>>{movies ->
+                viewModel.allMovies!!.observe(this, Observer<List<Movie>>{ movies ->
 
                     adapter.movies = movies
                     adapter.notifyDataSetChanged()
@@ -71,8 +74,13 @@ class HomeFragment : Fragment() , MoviesAdapter.OnItemClickedListener{
     }
 
     override fun onMovieClicked(position: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(utils.convertToParcellable(viewModel.allMovies.value!![position]))
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(utils.convertToParcellable(viewModel.allMovies!!.value!![position]))
         findNavController().navigate(action)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel =ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
 }

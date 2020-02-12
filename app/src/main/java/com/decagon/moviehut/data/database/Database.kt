@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.decagon.moviehut.data.movieresponse.Movie
 
 
-@Database(entities = [Movie::class], version = 7)
+@Database(entities = [Movie::class], version = 8)
 @TypeConverters(Converter::class)
 abstract class MovieDatabase: RoomDatabase() {
 
