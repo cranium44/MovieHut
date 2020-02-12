@@ -50,6 +50,7 @@ class MoviesAdapter(val context: Context, var onItemClickedListener: OnItemClick
         holder.releaseDate.text = movie.releaseDate
         Glide.with(context)
             .load(URLRepository.IMAGE_BASE_URL +"w154" + movie.posterPath)
+            .placeholder(R.drawable.no_image)
             .into(holder.image)
 
         if (movie.isFavourite){

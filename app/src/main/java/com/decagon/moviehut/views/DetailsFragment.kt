@@ -38,6 +38,7 @@ class DetailsFragment : Fragment() {
         view.findViewById<TextView>(R.id.details_release_date).append(" ${movie.releaseDate}")
         Glide.with(context!!)
             .load(URLRepository.IMAGE_BASE_URL + "original" + movie.backdropPath)
+            .placeholder(R.drawable.no_image)
             .into(view.findViewById(R.id.movie_poster))
 
         Log.d("DET", movie.isFavourite.toString())
