@@ -12,10 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.decagon.moviehut.R
-import com.decagon.moviehut.controllers.adapters.MoviesAdapter
 import com.decagon.moviehut.controllers.Utils
+import com.decagon.moviehut.controllers.adapters.MoviesAdapter
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.HomeViewModel
+
 
 class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
 
@@ -70,7 +71,13 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
         }
 
 
+        //recyclerView.addOnScrollListener(recyclerViewOnScrollListener)
+
         return view
+    }
+
+    private fun loadMoreItems() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onMovieClicked(position: Int) {
@@ -85,4 +92,5 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
     }
+
 }
