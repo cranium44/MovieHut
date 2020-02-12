@@ -1,6 +1,7 @@
 package com.decagon.moviehut.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,9 @@ class DetailsFragment : Fragment() {
         Glide.with(context!!)
             .load(URLRepository.IMAGE_BASE_URL + "original" + movie.backdropPath)
             .into(view.findViewById(R.id.movie_poster))
+
+        Log.d("DET", movie.isFavourite.toString())
+
         if(movie.isFavourite){
             view.findViewById<ImageView>(R.id.detaials_favourite).setImageResource(R.drawable.ic_favorite_filled)
         }
@@ -47,6 +51,8 @@ class DetailsFragment : Fragment() {
         val savebutton = view.findViewById<Button>(R.id.favourites_save_button)
         savebutton.setOnClickListener {
 
+
+            movie.isFavourite = true
 
             viewModel.saveFavourite(movie)
             this.findNavController().navigateUp()

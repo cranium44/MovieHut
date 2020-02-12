@@ -16,7 +16,7 @@ interface FavouriteMovieDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addFavouriteMovie(favouriteMovie: Movie)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addMovies(movie: List<Movie>)
 
     @Delete
