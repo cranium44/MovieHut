@@ -48,6 +48,8 @@ open class Movie(
     @ColumnInfo(name = "vote_count")
     @SerializedName("vote_count")
     open var voteCount: Int = 0,
+
+    @ColumnInfo(name = "is_favourite")
     @Transient
     open var isFavourite: Boolean = false
 )

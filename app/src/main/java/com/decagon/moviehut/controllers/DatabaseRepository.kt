@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 object DatabaseRepository {
     lateinit var context: Context
 
-    fun getDataFromDatabase(database: MovieDatabase) = database.movieDao().getAllFavourites()
+    fun getDataFromDatabase(database: MovieDatabase) = database.movieDao().getAllMovies()
 
     suspend fun saveFavouriteMovie(favouriteMovie: Movie, database: MovieDatabase){
         withContext(Dispatchers.IO){
