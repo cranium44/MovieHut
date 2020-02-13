@@ -39,8 +39,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         dbRepository.context = application.applicationContext
         viewModelScope.launch {
             repository.callApiAndSaveToDB(database)
-//            allMovies = dbRepository.getFavourites(database)
-//            favouriteMovies = dbRepository.getDataFromDatabase(database)
+        }
+    }
+
+    fun saveFavourite(movie: Movie){
+        viewModelScope.launch {
+            dbRepository.saveFavouriteMovie(movie)
         }
     }
 

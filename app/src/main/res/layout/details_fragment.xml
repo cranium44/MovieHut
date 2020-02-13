@@ -128,9 +128,9 @@
             android:layout_height="wrap_content"
             android:text="@string/remove_from_favourites"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/favourites_save_button"
-            app:layout_constraintEnd_toEndOf="@+id/favourites_save_button"
-            app:layout_constraintStart_toStartOf="@+id/favourites_save_button"
-            app:layout_constraintTop_toTopOf="@+id/favourites_save_button" />
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -17,6 +17,7 @@ import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.controllers.adapters.MoviesAdapter
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.HomeViewModel
+import kotlinx.android.synthetic.main.home_fragment.*
 
 
 class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
@@ -34,17 +35,16 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.home_fragment, container, false)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val adapter = MoviesAdapter(
             activity!!.applicationContext,
-            this
+            this,
+            viewModel
         )
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         val favouriteSwitch: Switch = view.findViewById(R.id.favourites_switch)
         val layoutManager = GridLayoutManager(context, 2)
 
-
-
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         viewModel.allMovies.observe(this, Observer<List<Movie>> { movies ->
 
@@ -82,10 +82,18 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
     }
 
     override fun onMovieClicked(position: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
-            utils.convertToParcellable(viewModel.allMovies.value!![position])
-        )
-        findNavController().navigate(action)
+        if(!favourites_switch.isChecked){
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                utils.convertToParcellable(viewModel.allMovies.value!![position])
+            )
+            findNavController().navigate(action)
+        }else{
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                utils.convertToParcellable(viewModel.favouriteMovies.value!![position])
+            )
+            findNavController().navigate(action)
+        }
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
