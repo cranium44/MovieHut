@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -29,6 +30,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/popular_movies"
+            android:textSize="@dimen/font_large"
+            android:textColor="@color/font_color"
+            android:fontFamily="@font/lato_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +42,11 @@
             android:layout_height="wrap_content"
             android:text="@string/favourites"
             android:padding="@dimen/padding_small"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_regular"
+            android:fontFamily="@font/lato_regular"
+            android:thumbTextPadding="@dimen/padding_small"
+            android:thumbTint="@color/colorAccent"
             app:layout_constraintBaseline_toBaselineOf="@+id/some"
             app:layout_constraintEnd_toEndOf="parent" />
 

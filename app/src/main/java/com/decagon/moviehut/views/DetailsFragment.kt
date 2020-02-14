@@ -1,5 +1,6 @@
 package com.decagon.moviehut.views
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,18 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.decagon.moviehut.R
+import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.DetailsViewModel
+import kotlinx.android.synthetic.main.details_fragment.*
 
 class DetailsFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = DetailsFragment()
-    }
 
     private lateinit var viewModel: DetailsViewModel
 
@@ -31,39 +29,55 @@ class DetailsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.details_fragment, container, false)
 
+        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
+        val utils = Utils
         val movie: Movie = arguments!!.get("parcellable_movie") as Movie
+
+
         view.findViewById<TextView>(R.id.details_title).text = movie.title
         view.findViewById<TextView>(R.id.details_overview).text = movie.overview
         view.findViewById<TextView>(R.id.rating).text = movie.voteAverage.toString()
-        view.findViewById<TextView>(R.id.details_release_date).append(" ${movie.releaseDate}")
+        view.findViewById<TextView>(R.id.details_release_date)
+            .append("\n${utils.convertDate(movie.releaseDate)}")
         Glide.with(context!!)
             .load(URLRepository.IMAGE_BASE_URL + "original" + movie.backdropPath)
             .placeholder(R.drawable.no_image)
             .into(view.findViewById(R.id.movie_poster))
 
-        Log.d("DET", movie.isFavourite.toString())
 
-        if(movie.isFavourite){
-            view.findViewById<ImageView>(R.id.detaials_favourite).setImageResource(R.drawable.ic_favorite_filled)
+        val favourites = view.findViewById<ImageView>(R.id.detaials_favourite)
+        val saveButton = view.findViewById<Button>(R.id.favourites_save_button)
+        val removeButton = view.findViewById<Button>(R.id.favourites_remove_button)
+
+        if (movie.isFavourite) {
+            favourites.setImageResource(R.drawable.ic_favorite_filled)
+            saveButton.visibility = View.GONE
+            removeButton.visibility = View.VISIBLE
+        } else {
+            favourites.setImageResource(R.drawable.ic_favorite_outline)
+            saveButton.visibility = View.VISIBLE
+            removeButton.visibility = View.GONE
         }
 
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
-
-        val savebutton = view.findViewById<Button>(R.id.favourites_save_button)
-        savebutton.setOnClickListener {
 
 
+        saveButton.setOnClickListener {
             movie.isFavourite = true
-
             viewModel.saveFavourite(movie)
-            this.findNavController().navigateUp()
+            saveButton.visibility = View.GONE
+            removeButton.visibility = View.VISIBLE
+            favourites.setImageResource(R.drawable.ic_favorite_filled)
+        }
+
+        removeButton.setOnClickListener {
+            movie.isFavourite = false
+            viewModel.saveFavourite(movie)
+            favourites.setImageResource(R.drawable.ic_favorite_outline)
+            saveButton.visibility = View.VISIBLE
+            removeButton.visibility = View.GONE
         }
         return view
     }
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
 
 }

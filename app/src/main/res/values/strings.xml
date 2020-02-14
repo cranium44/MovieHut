@@ -8,4 +8,5 @@
     <string name="placeholdertext">TextView</string>
     <string name="add_to_favourites">Add To Favourites</string>
     <string name="release_date">Release Date: </string>
+    <string name="remove_from_favourites">Remove From Favourites</string>
 </resources>

@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
         android:elevation="@dimen/padding_small"
-        android:layout_marginBottom="@dimen/padding_small"
         app:cardCornerRadius="@dimen/padding_small"
+        android:layout_margin="4dp"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small">
 
@@ -23,9 +25,10 @@
             <ImageView
                 android:id="@+id/movies_image"
                 android:layout_width="154dp"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:contentDescription="@string/image"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -45,45 +48,53 @@
                 android:id="@+id/movies_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/movies_image"
-                app:layout_constraintTop_toTopOf="@+id/movies_image" />
+                android:layout_marginTop="8dp"
+                android:text="@string/placeholdertext"
+                android:textSize="@dimen/font_regular"
+                android:textColor="@color/font_color"
+                android:fontFamily="@font/lato_bold"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="@+id/movies_image"
+                app:layout_constraintStart_toStartOf="@+id/movies_image"
+                app:layout_constraintTop_toBottomOf="@+id/movies_image" />
 
             <TextView
                 android:id="@+id/movies_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/ic_star"
                 android:text=""
-                app:layout_constraintBottom_toBottomOf="@+id/movies_image"
-                app:layout_constraintStart_toEndOf="@+id/movies_image"
+                android:textSize="@dimen/font_regular"
+                android:textColor="@color/font_color"
+                android:fontFamily="@font/lato_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_date"
                 tools:text="5.7" />
 
             <TextView
                 android:id="@+id/movies_genre"
                 android:layout_width="59dp"
                 android:layout_height="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/movies_rating"
-                app:layout_constraintStart_toEndOf="@+id/movies_image" />
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/font_regular"
+                android:textColor="@color/font_color"
+                android:fontFamily="@font/lato_regular"
+                app:layout_constraintStart_toStartOf="@+id/movies_title"
+                app:layout_constraintTop_toBottomOf="@+id/movies_title" />
 
             <TextView
                 android:id="@+id/movie_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text=""
-                app:layout_constraintBottom_toTopOf="@+id/movies_genre"
-                app:layout_constraintEnd_toStartOf="@+id/movie_favourite"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/movies_image"
-                app:layout_constraintTop_toBottomOf="@+id/movies_title" />
+                android:layout_marginTop="8dp"
+                android:text="@string/placeholdertext"
+                android:textSize="@dimen/font_regular"
+                android:textColor="@color/font_color"
+                android:fontFamily="@font/lato_bold"
+                app:layout_constraintEnd_toEndOf="@+id/movies_title"
+                app:layout_constraintStart_toStartOf="@+id/movies_genre"
+                app:layout_constraintTop_toBottomOf="@+id/movies_genre" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
