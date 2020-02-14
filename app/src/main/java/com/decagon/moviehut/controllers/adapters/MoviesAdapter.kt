@@ -74,12 +74,12 @@ class MoviesAdapter(
                 movie.isFavourite = false
                 model.saveFavourite(movie)
                 holder.favorites.setImageResource(R.drawable.ic_favorite_outline)
-                showSnackbar("Added to Favourites", it)
+                showSnackbar("Removed from Favourites", it)
             }else{
                 movie.isFavourite = true
                 model.saveFavourite(movie)
                 holder.favorites.setImageResource(R.drawable.ic_favorite_filled)
-                showSnackbar("Removed from Favourites", it)
+                showSnackbar("Added to Favourites", it)
             }
         }
     }
