@@ -16,10 +16,25 @@ import java.io.FileOutputStream
 
 object Utils {
 
+    private val months = arrayOf(
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    )
+
     suspend fun saveImage(context: Context, b: Bitmap, imageName: String?): String {
         var foStream: FileOutputStream
         var filePath = ""
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             try {
                 val directory = Environment.getDataDirectory()
                 foStream = context.openFileOutput(imageName, Context.MODE_PRIVATE)
@@ -34,7 +49,7 @@ object Utils {
         return filePath
     }
 
-    fun convertToParcellable(movie: Movie): ParcellableMovie{
+    fun convertToParcellable(movie: Movie): ParcellableMovie {
         return ParcellableMovie(
             movie.adult,
             movie.backdropPath,
@@ -53,10 +68,11 @@ object Utils {
         )
     }
 
-    fun isNetworkConnected(context: Context): Boolean{
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isNetworkConnected(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val nw      = connectivityManager.activeNetwork ?: return false
+            val nw = connectivityManager.activeNetwork ?: return false
             val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
             return when {
                 actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
@@ -67,5 +83,11 @@ object Utils {
             val nwInfo = connectivityManager.activeNetworkInfo ?: return false
             return nwInfo.isConnected
         }
+    }
+
+    fun convertDate(date: String): String{
+        val temp = date.split("-")
+        val month = months[temp[1].toInt()-1]
+       return "$month ${temp[2]}, ${temp[0]}"
     }
 }
