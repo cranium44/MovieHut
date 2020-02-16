@@ -17,7 +17,6 @@ import kotlinx.coroutines.withContext
 
 class NetworkRepository(var application: Application) {
     private val TAG = "Network Repository"
-    private val databaseRepository = DatabaseRepository(application)
     private val movieDatabaseAPI = MovieDatabaseAPI()
     private val genreAPI = MovieDatabaseGenreAPI()
 

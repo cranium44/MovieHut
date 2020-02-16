@@ -21,6 +21,7 @@ class NetworkRepositoryTest {
     lateinit var application: Application
     @MockK
     lateinit var movieDatabaseAPI: MovieDatabaseAPI
+    @ObsoleteCoroutinesApi
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
     lateinit var SUT : NetworkRepository
