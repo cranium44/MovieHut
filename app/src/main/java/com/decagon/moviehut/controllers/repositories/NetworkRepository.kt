@@ -20,6 +20,8 @@ class NetworkRepository(var application: Application) {
     private val movieDatabaseAPI = MovieDatabaseAPI()
     private val genreAPI = MovieDatabaseGenreAPI()
 
+    var apiCalled = false
+
     suspend fun getGenres(): List<Genre> {
         var data = ArrayList<Genre>()
         withContext(Dispatchers.IO){
@@ -54,6 +56,7 @@ class NetworkRepository(var application: Application) {
 
     suspend fun callApiAndSaveToDB(database: MovieDatabase){
         var data: List<Movie>
+        apiCalled = true
         if(isNetworkConnected()){
             withContext(Dispatchers.IO) {
                 data = getMovies()!!
