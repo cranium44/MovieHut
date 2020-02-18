@@ -14,6 +14,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+@ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
 class NetworkRepositoryTest {
 
@@ -21,7 +22,7 @@ class NetworkRepositoryTest {
     lateinit var application: Application
     @MockK
     lateinit var movieDatabaseAPI: MovieDatabaseAPI
-    @ObsoleteCoroutinesApi
+
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
     lateinit var SUT : NetworkRepository

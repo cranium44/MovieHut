@@ -57,7 +57,7 @@ class NetworkRepository(var application: Application) {
         if(isNetworkConnected()){
             withContext(Dispatchers.IO) {
                 data = getMovies()!!
-                database.movieDao().addMovies(data)
+                database.movieDao().addMovies(*data.toTypedArray())
             }
         }
     }
