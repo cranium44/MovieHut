@@ -25,13 +25,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
-//    private lateinit var _allMovies : LiveData<List<Movie>>
-//        val allMovies
-//        get() = _allMovies
-//
-//    private lateinit var _favouriteMovies : LiveData<List<Movie>>
-//    val favouriteMovies
-//        get() = _favouriteMovies
+    //test variables
+    var saveMovieFired = false
+    var initFired = false
+
     var allMovies: LiveData<List<Movie>> = dbRepository.getDataFromDatabase()
     var favouriteMovies: LiveData<List<Movie>> = dbRepository.getFavourites()
 
@@ -39,10 +36,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         dbRepository.context = application.applicationContext
         viewModelScope.launch {
             repository.callApiAndSaveToDB(database)
+            initFired = true
         }
     }
 
     fun saveFavourite(movie: Movie){
+        saveMovieFired = true
         viewModelScope.launch {
             dbRepository.saveFavouriteMovie(movie)
         }
