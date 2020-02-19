@@ -11,6 +11,9 @@ class DatabaseRepository(var application: Application) {
     lateinit var context: Context
     private var database = MovieDatabase.getInstance(application.applicationContext)
 
+    var testSaveMovieFired = false
+    var testDeleteMovieFired = false
+
     fun getDataFromDatabase() = database.movieDao().getAllMovies()
 
     fun getFavourites() =
@@ -19,6 +22,7 @@ class DatabaseRepository(var application: Application) {
     suspend fun saveFavouriteMovie(favouriteMovie: Movie) {
         withContext(Dispatchers.IO) {
             database.movieDao().addFavouriteMovie(favouriteMovie)
+            testSaveMovieFired = true
         }
     }
 
@@ -26,6 +30,7 @@ class DatabaseRepository(var application: Application) {
     suspend fun deleteFavouriteMovie(favouriteMovie: Movie) {
         withContext(Dispatchers.IO) {
             database.movieDao().deleteFavouriteMovie(favouriteMovie)
+            testDeleteMovieFired = true
         }
     }
 }

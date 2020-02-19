@@ -22,18 +22,23 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
     private val viewModelJob = Job()
     private var viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    //test variables
+    var saveMovieTriggered = false
+    var deleteMovieTriggered = false
 
     init {
         dbRepository.context = application.applicationContext
     }
 
     fun saveFavourite(favouriteMovie: Movie){
+        saveMovieTriggered = true
         viewModelScope.launch {
             dbRepository.saveFavouriteMovie(favouriteMovie)
         }
     }
 
     fun deleteFavourite(favouriteMovie: Movie){
+        deleteMovieTriggered = true
         viewModelScope.launch {
             dbRepository.deleteFavouriteMovie(favouriteMovie)
         }
