@@ -12,7 +12,7 @@ import retrofit2.http.Path
 
 interface VideoApi {
     @GET("/{id}/videos")
-    fun getVideoTrailers(@Path("id") id: Int): Deferred<VideoResponse>
+    fun getVideoTrailersAsync(@Path("id") id: Int): Deferred<VideoResponse>
 
     companion object{
         operator fun invoke(): VideoApi{
