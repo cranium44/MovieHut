@@ -1,4 +1,6 @@
 package com.decagon.moviehut.viewmodels
 
-class TrailerViewModel {
+import androidx.lifecycle.ViewModel
+
+class TrailerViewModel: ViewModel() {
 }
