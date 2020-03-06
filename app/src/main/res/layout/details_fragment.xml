@@ -22,8 +22,8 @@
             android:id="@+id/movie_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,10 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/release_date"
-            android:textSize="@dimen/font_regular"
-            android:textColor="@color/font_color"
             android:fontFamily="@font/lato_regular"
+            android:text="@string/release_date"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -65,10 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:drawableLeft="@drawable/ic_star"
-            android:text=""
-            android:textSize="@dimen/font_regular"
-            android:textColor="@color/font_color"
             android:fontFamily="@font/lato_regular"
+            android:text=""
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_regular"
             app:layout_constraintBaseline_toBaselineOf="@+id/details_release_date"
             app:layout_constraintEnd_toStartOf="@+id/detaials_favourite"
             app:layout_constraintHorizontal_bias="1.0"
@@ -95,10 +95,10 @@
                     android:id="@+id/details_overview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="@dimen/font_regular"
-                    android:textColor="@color/font_color"
                     android:fontFamily="@font/lato_regular"
-                    android:text="@string/placeholdertext" />
+                    android:text="@string/placeholdertext"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_regular" />
             </LinearLayout>
         </ScrollView>
 
@@ -119,18 +119,33 @@
             android:layout_marginBottom="16dp"
             android:text="@string/add_to_favourites"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/watch_trailer_button"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/favourites_remove_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="@string/remove_from_favourites"
             android:visibility="gone"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/watch_trailer_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_play_circle_outline_black_24dp"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/favourites_save_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/favourites_save_button"
+            app:layout_constraintTop_toTopOf="@+id/favourites_save_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
