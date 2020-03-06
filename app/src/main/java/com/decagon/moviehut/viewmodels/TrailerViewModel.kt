@@ -18,9 +18,10 @@ class TrailerViewModel(application: Application): AndroidViewModel(application) 
     private val job = Job()
     private val viewModelScope = CoroutineScope(job + Dispatchers.Main)
 
-    fun getKey(movieId: Int){
+    fun getKey(movieId: Int): String{
         viewModelScope.launch {
             key = networkRepository.getTrailerUrls(movieId)
         }
+        return key
     }
 }
