@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.decagon.moviehut.R
+import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.HomeViewModel
@@ -57,7 +58,7 @@ class MoviesAdapter(
 
         holder.title.text = movie.title
         holder.rating.text = movie.voteAverage.toString()
-        holder.releaseDate.text = movie.releaseDate
+        holder.releaseDate.text = Utils.convertDate(movie.releaseDate)
         Glide.with(context)
             .load(URLRepository.IMAGE_BASE_URL + "w154" + movie.posterPath)
             .placeholder(R.drawable.no_image)

@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
         val layoutManager = GridLayoutManager(context, 2)
 
 
-        viewModel.allMovies.observe(this, Observer<List<Movie>> { movies ->
+        viewModel.allMovies.observe(viewLifecycleOwner, Observer<List<Movie>> { movies ->
 
             adapter.movies = movies
             adapter.notifyDataSetChanged()
@@ -57,14 +57,14 @@ class HomeFragment : Fragment(), MoviesAdapter.OnItemClickedListener {
         //
         favouriteSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (!isChecked) {
-                viewModel.allMovies.observe(this, Observer<List<Movie>> { movies ->
+                viewModel.allMovies.observe(viewLifecycleOwner, Observer<List<Movie>> { movies ->
 
                     adapter.movies = movies
                     adapter.notifyDataSetChanged()
                 })
                 recyclerView.adapter = adapter
             } else {
-                viewModel.favouriteMovies.observe(this, Observer<List<Movie>> { movies ->
+                viewModel.favouriteMovies.observe(viewLifecycleOwner, Observer<List<Movie>> { movies ->
                     adapter.movies = movies
                     adapter.notifyDataSetChanged()
                 })
