@@ -1,65 +1,64 @@
 package com.decagon.moviehut.views
 
-import androidx.appcompat.app.AppCompatActivity
+//import com.google.android.youtube.player.YouTubePlayerView
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.decagon.moviehut.R
-import com.decagon.moviehut.controllers.repositories.URLRepository
+import com.decagon.moviehut.controllers.repositories.NetworkRepository
 import com.decagon.moviehut.viewmodels.TrailerViewModel
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
-import kotlinx.android.synthetic.main.activity_trailer.*
-import kotlin.properties.Delegates
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class TrailerActivity : YouTubeBaseActivity() {
+class TrailerActivity : AppCompatActivity() {
 
     private lateinit var playerView: YouTubePlayerView
     private lateinit var viewModel: TrailerViewModel
     private lateinit var player: YouTubePlayer
-//    private val id by lazy {
-//        intent.getIntExtra("movie_id", 0)
-//    }
+    private lateinit var networkRepository: NetworkRepository
+//    var videoID = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trailer)
 
-        playerView = findViewById<YouTubePlayerView>(R.id.trailer_player)
-        viewModel = TrailerViewModel(this.application)
+        viewModel = ViewModelProvider(this).get(TrailerViewModel::class.java)
         val id = intent.getIntExtra("movie_id", 0)
 
+        networkRepository = NetworkRepository(application)
 
-        play_trailer_button.setOnClickListener {
-            Log.d("YOU TUBE", "player initialized")
-            playerView.initialize(URLRepository.YOUTUBE_API_KEY, object : YouTubePlayer.OnInitializedListener{
-                override fun onInitializationSuccess(
-                    p0: YouTubePlayer.Provider?,
-                    p1: YouTubePlayer?,
-                    p2: Boolean
-                ) {
-                    Log.d("YOU TUBE", "Initialization successful")
-                    Log.d("YOU TUBE", id.toString())
-                    player = p1!!
-                    player.loadVideo(viewModel.getKey(id))
-                }
+        playerView = findViewById<YouTubePlayerView>(R.id.trailer_player)
+        lifecycle.addObserver(playerView);
 
-                override fun onInitializationFailure(
-                    p0: YouTubePlayer.Provider?,
-                    p1: YouTubeInitializationResult?
-                ) {
-                    Log.d("YOU TUBE", "Initialization Failed")
-                }
-            })
+        CoroutineScope(Dispatchers.Main).launch {
+            initializePlayer(id)
         }
 
     }
 
 //    override fun onDestroy() {
 //        super.onDestroy()
-//        playerView.releasePointerCapture()
+//        playerView.release()
 //    }
+
+    private suspend fun initializePlayer(id: Int){
+        withContext(Dispatchers.IO){
+            val videoID = networkRepository.getTrailerUrls(id)
+            Log.d("PLAYER", videoID)
+            playerView.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
+                    Log.d("PLAYER", videoID)
+                    youTubePlayer.cueVideo(videoID, 0f)
+                }
+            })
+        }
+    }
+
 }

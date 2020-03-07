@@ -25,11 +25,11 @@ class TrailerViewModel(application: Application): AndroidViewModel(application) 
 
     fun getKey(movieId: Int): String{
         var url = ""
-        viewModelScope.launch {
+        CoroutineScope(Dispatchers.Main).launch {
             Log.d("VIEWMODEL", movieId.toString())
             url = networkRepository.getTrailerUrls(movieId)
-            Log.d("VIEWMODEL", url)
         }
+        Log.d("VIEWMODEL", url)
         return url
     }
 
