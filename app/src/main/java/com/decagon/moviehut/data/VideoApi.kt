@@ -9,10 +9,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface VideoApi {
-    @GET("/{id}/videos")
-    fun getVideoTrailersAsync(@Path("id") id: Int): Deferred<VideoResponse>
+    @GET("{id}/videos")
+    fun getVideoTrailersAsync(
+        @Path("id")
+        id: Int,
+        @Query("api_key")
+        apiKey: String
+    ): Deferred<VideoResponse>
 
     companion object{
         operator fun invoke(): VideoApi{

@@ -1,5 +1,6 @@
 package com.decagon.moviehut.views
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -48,6 +50,8 @@ class DetailsFragment : Fragment() {
         val favourites = view.findViewById<ImageView>(R.id.detaials_favourite)
         val saveButton = view.findViewById<Button>(R.id.favourites_save_button)
         val removeButton = view.findViewById<Button>(R.id.favourites_remove_button)
+        val watchTrailerButton = view.findViewById<ImageButton>(R.id.watch_trailer_button)
+
 
         if (movie.isFavourite) {
             favourites.setImageResource(R.drawable.ic_favorite_filled)
@@ -75,6 +79,12 @@ class DetailsFragment : Fragment() {
             favourites.setImageResource(R.drawable.ic_favorite_outline)
             saveButton.visibility = View.VISIBLE
             removeButton.visibility = View.GONE
+        }
+
+        watchTrailerButton.setOnClickListener {
+            val intent = Intent(this.activity?.applicationContext, TrailerActivity::class.java)
+            intent.putExtra("movie_id", movie.id)
+            startActivity(intent)
         }
         return view
     }

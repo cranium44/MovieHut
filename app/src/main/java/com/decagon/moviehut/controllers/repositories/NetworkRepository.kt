@@ -71,9 +71,11 @@ class NetworkRepository(var application: Application) {
         if (isNetworkConnected()){
             withContext(Dispatchers.IO){
                 try {
-                    val data = videoApi.getVideoTrailersAsync(movieId).await().results
+                    Log.d("REPOSITORY", movieId.toString())
+                    val data = videoApi.getVideoTrailersAsync(movieId, URLRepository.API_KEY).await().results
                     val you = data.filter { result ->  result.site == "YouTube"}
                     url = you[0].key
+                    Log.d("DATA TRAILER", url)
                 }catch (t: Throwable){
                     Log.e("URL ERROR", t.message.toString())
                 }

@@ -1,6 +1,7 @@
 package com.decagon.moviehut.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide.init
@@ -18,10 +19,18 @@ class TrailerViewModel(application: Application): AndroidViewModel(application) 
     private val job = Job()
     private val viewModelScope = CoroutineScope(job + Dispatchers.Main)
 
-    fun getKey(movieId: Int): String{
-        viewModelScope.launch {
-            key = networkRepository.getTrailerUrls(movieId)
-        }
-        return key
+    init {
+        key=""
     }
+
+    fun getKey(movieId: Int): String{
+        var url = ""
+        viewModelScope.launch {
+            Log.d("VIEWMODEL", movieId.toString())
+            url = networkRepository.getTrailerUrls(movieId)
+            Log.d("VIEWMODEL", url)
+        }
+        return url
+    }
+
 }
