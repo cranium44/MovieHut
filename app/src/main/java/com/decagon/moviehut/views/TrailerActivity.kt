@@ -41,6 +41,7 @@ class TrailerActivity : AppCompatActivity() {
             initializePlayer(id)
         }
 
+
     }
 
 //    override fun onDestroy() {
