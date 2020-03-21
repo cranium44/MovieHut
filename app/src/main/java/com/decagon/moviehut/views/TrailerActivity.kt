@@ -31,6 +31,10 @@ class TrailerActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(TrailerViewModel::class.java)
         val id = intent.getIntExtra("movie_id", 0)
+        supportActionBar?.apply {
+            title = "Trailer"
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        }
 
         networkRepository = NetworkRepository(application)
 

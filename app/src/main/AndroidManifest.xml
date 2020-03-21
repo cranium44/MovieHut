@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.TrailerActivity"></activity>
+        <activity android:name=".views.TrailerActivity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
