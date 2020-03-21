@@ -1,5 +1,5 @@
 # MovieHut
-An android application to view the list of movies and manage yor favourites
+An android application to view the list of movies and manage your favourites, watch the trailers and book tickets for the movies
 
 # Resources
 - All movie information was gotten from The Movie Database [here](https://www.themoviedb.org/movie "TMDB Movie Homepage")
@@ -8,6 +8,7 @@ An android application to view the list of movies and manage yor favourites
 ### External Libraries
 - Retrofit 2
 - Glide
+- YouTube API
 ### Language
 - Kotlin
 
