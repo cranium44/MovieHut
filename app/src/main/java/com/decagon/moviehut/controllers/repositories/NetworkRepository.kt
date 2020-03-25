@@ -56,14 +56,14 @@ class NetworkRepository(var application: Application) {
     }
 
     suspend fun callApiAndSaveToDB(database: MovieDatabase){
-        var data: List<Movie>
-        apiCalled = true
-        if(isNetworkConnected()){
-            withContext(Dispatchers.IO) {
-                data = getMovies()!!
-                database.movieDao().addMovies(*data.toTypedArray())
-            }
-        }
+//        var data: List<Movie>
+//        apiCalled = true
+//        if(isNetworkConnected()){
+//            withContext(Dispatchers.IO) {
+//                data = getMovies()!!
+//                database.movieDao().addMovies(*data.toTypedArray())
+//            }
+//        }
     }
 
     suspend fun getTrailerUrls(movieId: Int):String{

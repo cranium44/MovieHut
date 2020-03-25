@@ -1,18 +1,13 @@
 package com.decagon.moviehut.views
 
+import android.app.Dialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -21,7 +16,6 @@ import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.DetailsViewModel
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.details_fragment.*
 
 class DetailsFragment : Fragment() {
@@ -101,10 +95,25 @@ class DetailsFragment : Fragment() {
     }
 
     private fun openPopup() {
-
+        val dialog = Dialog(context!!)
+        val view = LayoutInflater.from(context).inflate(R.layout.dialog, null, false)
+        dialog.setContentView(view)
+        dialog.setTitle("Select Cinema")
+        val dialogRadioGroup = dialog.findViewById<RadioGroup>(R.id.radio_group)
+        val dialogButton = dialog.findViewById<Button>(R.id.dialog_submit_button)
+        dialogButton.setOnClickListener {
+            val site = when(dialogRadioGroup.checkedRadioButtonId){
+                R.id.radio_button_genesis -> 1
+                R.id.radio_button_silver -> 2
+                R.id.radio_button_film_house -> 3
+                else -> 0
+            }
+            loadPage(site)
+        }
+        dialog.show()
     }
 
-    fun loadPage(site: Int) {
+    private fun loadPage(site: Int) {
         val url = when (site) {
             1 -> URLRepository.GENESIS_CINEMA
             2 -> URLRepository.SILVER_BIRD_GALLERIA
@@ -113,7 +122,8 @@ class DetailsFragment : Fragment() {
         }
         val page = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, page)
-        startActivity(intent)
-
+        if(intent.resolveActivity(activity!!.packageManager) != null){
+            startActivity(intent)
+        }
     }
 }
