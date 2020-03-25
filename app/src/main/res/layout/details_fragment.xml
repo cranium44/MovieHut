@@ -118,7 +118,8 @@
             android:id="@+id/favourites_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/add_to_favourites"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/watch_trailer_button"
@@ -145,14 +146,16 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_play_circle_outline_black_24dp"
             app:layout_constraintBottom_toBottomOf="@+id/favourites_save_button"
-            app:layout_constraintTop_toTopOf="@+id/favourites_save_button"
-            tools:layout_editor_absoluteX="227dp" />
+            app:layout_constraintEnd_toStartOf="@+id/book_ticket_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/favourites_save_button"
+            app:layout_constraintTop_toTopOf="@+id/favourites_save_button" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/book_ticket_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             android:src="@drawable/ic_live_tv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -10,4 +10,8 @@
     <string name="release_date">Release Date: </string>
     <string name="remove_from_favourites">Remove From Favourites</string>
     <string name="play">Play</string>
+    <string name="silverbird_galleria">SilverBird Galleria</string>
+    <string name="film_house_cinema">Film House Cinema</string>
+    <string name="genesis_cinema">Genesis Cinema</string>
+    <string name="submit">Submit</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.decagon.moviehut.views
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +21,7 @@ import com.decagon.moviehut.controllers.Utils
 import com.decagon.moviehut.controllers.repositories.URLRepository
 import com.decagon.moviehut.data.movieresponse.Movie
 import com.decagon.moviehut.viewmodels.DetailsViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.details_fragment.*
 
 class DetailsFragment : Fragment() {
@@ -89,5 +92,28 @@ class DetailsFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        book_ticket_button.setOnClickListener {
+            openPopup()
+        }
+    }
+
+    private fun openPopup() {
+
+    }
+
+    fun loadPage(site: Int) {
+        val url = when (site) {
+            1 -> URLRepository.GENESIS_CINEMA
+            2 -> URLRepository.SILVER_BIRD_GALLERIA
+            3 -> URLRepository.FILM_HOUSE_CINEMA
+            else -> "https://www.google.com"
+        }
+        val page = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, page)
+        startActivity(intent)
+
+    }
 }
