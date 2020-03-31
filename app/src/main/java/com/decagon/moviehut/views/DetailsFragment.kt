@@ -1,6 +1,7 @@
 package com.decagon.moviehut.views
 
-import android.app.Dialog
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -91,26 +92,13 @@ class DetailsFragment : Fragment() {
 
         book_ticket_button.setOnClickListener {
             openPopup()
+//            stuff()
         }
     }
 
     private fun openPopup() {
-        val dialog = Dialog(context!!)
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog, null, false)
-        dialog.setContentView(view)
-        dialog.setTitle("Select Cinema")
-        val dialogRadioGroup = dialog.findViewById<RadioGroup>(R.id.radio_group)
-        val dialogButton = dialog.findViewById<Button>(R.id.dialog_submit_button)
-        dialogButton.setOnClickListener {
-            val site = when(dialogRadioGroup.checkedRadioButtonId){
-                R.id.radio_button_genesis -> 1
-                R.id.radio_button_silver -> 2
-                R.id.radio_button_film_house -> 3
-                else -> 0
-            }
-            loadPage(site)
-        }
-        dialog.show()
+        val dialog = MyDialog()
+        dialog.show(activity!!.supportFragmentManager, "")
     }
 
     private fun loadPage(site: Int) {
@@ -126,4 +114,6 @@ class DetailsFragment : Fragment() {
             startActivity(intent)
         }
     }
+
+
 }

@@ -8,8 +8,8 @@ interface URLRepository {
         const val VIDEO_BASE_URL = "https://api.themoviedb.org/3/movie/"
         const val API_KEY = "28dda9f76d76f128b47831768bc9a103"
         const val YOUTUBE_API_KEY = "AIzaSyB5LLuT8D597fEOpwQm1eQKfw1c_MFosTQ"
-        const val GENESIS_CINEMA = ""
-        const val FILM_HOUSE_CINEMA = ""
-        const val SILVER_BIRD_GALLERIA = ""
+        const val GENESIS_CINEMA = "https://genesiscinemas.com/buy-tickets/"
+        const val FILM_HOUSE_CINEMA = "https://filmhouseng.com/"
+        const val SILVER_BIRD_GALLERIA = "https://ticket.silverbirdcinemas.com/"
     }
 }
