@@ -92,7 +92,6 @@ class DetailsFragment : Fragment() {
 
         book_ticket_button.setOnClickListener {
             openPopup()
-//            stuff()
         }
     }
 
