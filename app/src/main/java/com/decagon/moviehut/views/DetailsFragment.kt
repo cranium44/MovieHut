@@ -101,19 +101,6 @@ class DetailsFragment : Fragment() {
         dialog.show(activity!!.supportFragmentManager, "")
     }
 
-    private fun loadPage(site: Int) {
-        val url = when (site) {
-            1 -> URLRepository.GENESIS_CINEMA
-            2 -> URLRepository.SILVER_BIRD_GALLERIA
-            3 -> URLRepository.FILM_HOUSE_CINEMA
-            else -> "https://www.google.com"
-        }
-        val page = Uri.parse(url)
-        val intent = Intent(Intent.ACTION_VIEW, page)
-        if(intent.resolveActivity(activity!!.packageManager) != null){
-            startActivity(intent)
-        }
-    }
 
 
 }
